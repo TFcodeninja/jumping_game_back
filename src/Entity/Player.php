@@ -22,13 +22,13 @@ class Player
     private ?int $lives = null;
 
     #[ORM\Column]
-    private ?int $max_scores = null;
+    private ?int $maxScore = null;
 
     #[ORM\Column]
-    private ?\DateTime $createdat = null;
+    private ?\DateTime $createdAt = null;
 
     #[ORM\Column]
-    private ?bool $hasweapon = null;
+    private ?bool $hasWeapon = null;
 
     /**
      * @var Collection<int, Score>
@@ -61,7 +61,6 @@ class Player
     public function setUsername(string $username): static
     {
         $this->username = $username;
-
         return $this;
     }
 
@@ -73,43 +72,39 @@ class Player
     public function setLives(int $lives): static
     {
         $this->lives = $lives;
-
         return $this;
     }
 
-    public function getMaxScores(): ?int
+    public function getMaxScore(): ?int
     {
-        return $this->max_scores;
+        return $this->maxScore;
     }
 
-    public function setMaxScores(int $max_scores): static
+    public function setMaxScore(int $maxScore): static
     {
-        $this->max_scores = $max_scores;
-
+        $this->maxScore = $maxScore;
         return $this;
     }
 
-    public function getCreatedat(): ?\DateTime
+    public function getCreatedAt(): ?\DateTime
     {
-        return $this->createdat;
+        return $this->createdAt;
     }
 
-    public function setCreatedat(\DateTime $createdat): static
+    public function setCreatedAt(\DateTime $createdAt): static
     {
-        $this->createdat = $createdat;
-
+        $this->createdAt = $createdAt;
         return $this;
     }
 
-    public function hasweapon(): ?bool
+    public function getHasWeapon(): ?bool
     {
-        return $this->hasweapon;
+        return $this->hasWeapon;
     }
 
-    public function setHasweapon(bool $hasweapon): static
+    public function setHasWeapon(bool $hasWeapon): static
     {
-        $this->hasweapon = $hasweapon;
-
+        $this->hasWeapon = $hasWeapon;
         return $this;
     }
 
@@ -134,7 +129,6 @@ class Player
     public function removeScore(Score $score): static
     {
         if ($this->scores->removeElement($score)) {
-            // set the owning side to null (unless already changed)
             if ($score->getPlayer() === $this) {
                 $score->setPlayer(null);
             }
@@ -164,7 +158,6 @@ class Player
     public function removeProjectile(Projectile $projectile): static
     {
         if ($this->projectiles->removeElement($projectile)) {
-            // set the owning side to null (unless already changed)
             if ($projectile->getPlayer() === $this) {
                 $projectile->setPlayer(null);
             }
