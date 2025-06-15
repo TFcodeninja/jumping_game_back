@@ -28,6 +28,9 @@ class Projectile
     #[ORM\Column(length: 255)]
     private ?string $imagepath = null;
 
+    #[ORM\ManyToOne(inversedBy: 'projectiles')]
+    private ?Player $player = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,6 +92,18 @@ class Projectile
     public function setImagepath(string $imagepath): static
     {
         $this->imagepath = $imagepath;
+
+        return $this;
+    }
+
+    public function getPlayer(): ?Player
+    {
+        return $this->player;
+    }
+
+    public function setPlayer(?Player $player): static
+    {
+        $this->player = $player;
 
         return $this;
     }

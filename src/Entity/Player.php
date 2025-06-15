@@ -36,9 +36,16 @@ class Player
     #[ORM\OneToMany(targetEntity: Score::class, mappedBy: 'player')]
     private Collection $scores;
 
+    /**
+     * @var Collection<int, Projectile>
+     */
+    #[ORM\OneToMany(targetEntity: Projectile::class, mappedBy: 'player')]
+    private Collection $projectiles;
+
     public function __construct()
     {
         $this->scores = new ArrayCollection();
+        $this->projectiles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -130,6 +137,36 @@ class Player
             // set the owning side to null (unless already changed)
             if ($score->getPlayer() === $this) {
                 $score->setPlayer(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Projectile>
+     */
+    public function getProjectiles(): Collection
+    {
+        return $this->projectiles;
+    }
+
+    public function addProjectile(Projectile $projectile): static
+    {
+        if (!$this->projectiles->contains($projectile)) {
+            $this->projectiles->add($projectile);
+            $projectile->setPlayer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProjectile(Projectile $projectile): static
+    {
+        if ($this->projectiles->removeElement($projectile)) {
+            // set the owning side to null (unless already changed)
+            if ($projectile->getPlayer() === $this) {
+                $projectile->setPlayer(null);
             }
         }
 
