@@ -17,7 +17,7 @@ class Score
     private ?int $value = null;
 
     #[ORM\Column]
-    private ?\DateTime $createdat = null;
+    private ?\DateTime $createdAt = null;
 
     #[ORM\Column]
     private ?int $duration = null;
@@ -42,14 +42,14 @@ class Score
         return $this;
     }
 
-    public function getCreatedat(): ?\DateTime
+    public function getCreatedAt(): ?\DateTime
     {
-        return $this->createdat;
+        return $this->createdAt;
     }
 
-    public function setCreatedat(\DateTime $createdat): static
+    public function setCreatedAt(\DateTime $createdAt): static
     {
-        $this->createdat = $createdat;
+        $this->createdAt = $createdAt;
 
         return $this;
     }

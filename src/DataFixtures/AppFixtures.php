@@ -17,7 +17,7 @@ class AppFixtures extends Fixture
         $player->setUsername('TestPlayer');
         $player->setLives(3);
         $player->setMaxScore(1500);
-        $player->setCreatedAt(new \DateTimeImmutable());
+        $player->setCreatedAt(new \DateTime());
         $player->setHasWeapon(true);
         $manager->persist($player);
 

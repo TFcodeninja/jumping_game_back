@@ -46,6 +46,10 @@ class Player
     {
         $this->scores = new ArrayCollection();
         $this->projectiles = new ArrayCollection();
+        $this->lives = 3;
+        $this->maxScore = 0;
+        $this->hasWeapon = false;
+        $this->createdAt = new \DateTime();
     }
 
     public function getId(): ?int
