@@ -16,9 +16,6 @@ class Item
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $effectype = null;
-
     #[ORM\Column]
     private ?int $value = null;
 
@@ -27,6 +24,9 @@ class Item
 
     #[ORM\Column(length: 255)]
     private ?string $imagepath = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $effecttype = null;
 
     public function getId(): ?int
     {
@@ -45,17 +45,7 @@ class Item
         return $this;
     }
 
-    public function getEffectype(): ?string
-    {
-        return $this->effectype;
-    }
-
-    public function setEffectype(string $effectype): static
-    {
-        $this->effectype = $effectype;
-
-        return $this;
-    }
+    
 
     public function getValue(): ?int
     {
@@ -89,6 +79,18 @@ class Item
     public function setImagepath(string $imagepath): static
     {
         $this->imagepath = $imagepath;
+
+        return $this;
+    }
+
+    public function getEffecttype(): ?string
+    {
+        return $this->effecttype;
+    }
+
+    public function setEffecttype(string $effecttype): static
+    {
+        $this->effecttype = $effecttype;
 
         return $this;
     }
