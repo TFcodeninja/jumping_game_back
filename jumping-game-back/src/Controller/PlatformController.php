@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PlatformController extends AbstractController
 {
-    #[Route('/api/platforms', name: 'api_platforms', methods: ['GET'])]
+    #[Route('/api/platforms', name: 'api_platforms', methods: ['GET', 'OPTIONS'])]
     public function index(PlatformRepository $platformRepository): JsonResponse
     {
         $platforms = $platformRepository->findAll();
@@ -30,7 +30,12 @@ class PlatformController extends AbstractController
             ];
         }
 
-        return new JsonResponse($data);
+        $response = new JsonResponse($data);
+        $response->headers->set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        $response->headers->set('Access-Control-Allow-Methods', 'GET, OPTIONS');
+        $response->headers->set('Access-Control-Allow-Headers', 'Content-Type');
+        
+        return $response;
     }
 }
 

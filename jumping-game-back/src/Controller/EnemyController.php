@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class EnemyController extends AbstractController
 {
-    #[Route('/api/enemies', name: 'api_enemies', methods: ['GET'])]
+    #[Route('/api/enemies', name: 'api_enemies', methods: ['GET', 'OPTIONS'])]
     public function index(EnemyRepository $enemyRepository): JsonResponse
     {
         $enemies = $enemyRepository->findAll();
@@ -29,6 +29,11 @@ class EnemyController extends AbstractController
             ];
         }
 
-        return new JsonResponse($data);
+        $response = new JsonResponse($data);
+        $response->headers->set('Access-Control-Allow-Origin', 'http://localhost:3000');
+        $response->headers->set('Access-Control-Allow-Methods', 'GET, OPTIONS');
+        $response->headers->set('Access-Control-Allow-Headers', 'Content-Type');
+        
+        return $response;
     }
 }
